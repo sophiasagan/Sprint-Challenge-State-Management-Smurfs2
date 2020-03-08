@@ -54,7 +54,7 @@ export const reducer = (state = initialState, action) => {
         case CREATE_SMURF_SUCCESS:
             return {
                 ...state,
-                smurfArray: action.payload,
+                smurfs: action.payload,
                 isUpdating: false
             }
     
@@ -64,25 +64,27 @@ export const reducer = (state = initialState, action) => {
                 isUpdating: false,
                 error: action.payload
             }
-            case DELETE_SMURF_START:
+            case DELETE_SMURF_SUCCESS:
+                let newState = {...state}
+                    let smurfs = newState.smurfs.filter(smurf => smurf.id !== action.payload)
                 return {
-                    ...state,
-                    isUpdating: true
+                    ...newState,
+                    smurfs
                 }
                 
-            case DELETE_SMURF_SUCCESS:
-                return {
-                    ...state,
-                    smurfArray: action.payload,
-                    isUpdating: false
-                }
+            // case DELETE_SMURF_SUCCESS:
+            //     return {
+            //         ...state,
+            //         smurfArray: action.payload,
+            //         isUpdating: false
+            //     }
         
-            case DELETE_SMURF_FAIL:
-                return {
-                    ...state,
-                    isUpdating: false,
-                    error: action.payload
-                }
+            // case DELETE_SMURF_FAIL:
+            //     return {
+            //         ...state,
+            //         isUpdating: false,
+            //         error: action.payload
+            //     }
 
 
         

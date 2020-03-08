@@ -16,6 +16,8 @@ const Form = props => {
 
   const submitForm = e => {
       e.preventDefault();
+      props.createSmurf(newSmurf)
+      
   }
 
   return (
@@ -26,16 +28,16 @@ const Form = props => {
           id=""
           type="text"
           placeholder="Name Your Smurf"
-          onChange={e => handleChange(e)}
+          onChange={handleChange}
           value={newSmurf.name}
         />
 
         <input
           name="age"
           id=""
-          type="text"
+          type="number"
           placeholder="Smurf Age"
-          onChange={e => handleChange(e)}
+          onChange={handleChange}
           value={newSmurf.age}
         />
 
@@ -44,11 +46,11 @@ const Form = props => {
           id=""
           type="text"
           placeholder="Smurf Height"
-          onChange={e => handleChange(e)}
+          onChange={handleChange}
           value={newSmurf.height}
         />
 
-        <button type="submit" onClick={() => props.createSmurf(newSmurf)}>
+        <button type="submit" onClick={submitForm}>
           Add Your Smurf!
         </button>
       </form>
@@ -58,7 +60,7 @@ const Form = props => {
 
 const mapStateToProps = state => {
   return {
-    addingSmurf: state.addingSmurf
+    createSmurf: state.createSmurf
   };
 };
 
