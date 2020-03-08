@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getSmurfs, deleteSmurf } from "../actions";
+import Card from "./Card"
 
 const SmurfList = props => {
-    useEffect(() => {
-        props.getSmurfs()
-    }, [])
+    // useEffect(() => {
+    //     props.getSmurfs()
+    // }, [smurf])
 
     if (props.isFetching) {
         return <h3>Tra La, La La La La</h3>
@@ -14,25 +15,14 @@ const SmurfList = props => {
     return (
         <div>
             <button onClick={() => props.getSmurfs()}>Fetch Smurfs!</button>
-            {/* {props.smurfs &&
-        props.smurfs.map(smurf => (
-          <div key={smurf.id}>
-            <h1>Name: {smurf.name}</h1>
-            <p>Age: {smurf.age}</p>
-            <p>Height: {smurf.height}</p>
-          </div>
-        ))} */}
+           
             <div>
-                {props.error && <p>{props.error}</p>}
+            {props.error && <p>{props.error}</p>}
                 {props.smurfs && props.smurfs.map(smurf => (
-                    <div key={smurf.id}>
-                        <h1>Name: {smurf.name}</h1>
-                        <p>Age: {smurf.age}</p>
-                        <p>Height: {smurf.height}</p>
-                    </div>
+                <Card key={smurf.id} smurf={smurf}
+                    />
                 ))}
 
-                <button onClick={() => props.deleteSmurf()}>UnSmurf</button>
             </div>
         </div>
     );
@@ -42,6 +32,7 @@ const mapStateToProps = state => {
     return {
         smurfs: state.smurfs,
         isFetching: state.isFetching,
+        isDeleting: state.isDeleting,
         error: state.error,
 
     }

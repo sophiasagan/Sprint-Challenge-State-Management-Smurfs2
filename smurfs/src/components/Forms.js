@@ -10,6 +10,7 @@ const Form = props => {
     id: Date.now()
   });
 
+  
   const handleChange = e => {
     setNewSmurf({ ...newSmurf, [e.target.name]: e.target.value });
   };

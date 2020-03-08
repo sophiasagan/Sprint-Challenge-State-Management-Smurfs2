@@ -59,13 +59,13 @@ export const updateSmurf = payload => dispatch => {
         })
 }
 
-export const deleteSmurf = (id) => dispatch => {
+export const deleteSmurf = id => dispatch => {
     dispatch({ type: DELETE_SMURF_SUCCESS });
     axios
-        .put('http://localhost:3333/smurfs/123')
+        .delete(`http://localhost:3333/smurfs/${id}`)
         .then(res => {
-            console.log('delete smurf array', res.data)
-            dispatch({ type: DELETE_SMURF_SUCCESS, payload: res.data.id })
+            console.log('delete smurf', id)
+            dispatch({ type: DELETE_SMURF_SUCCESS, payload: id })
         })
         .catch(err => dispatch({ type: DELETE_SMURF_FAIL }))
 }
